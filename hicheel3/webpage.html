@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Register Form</title>
+  </head>
+  <body>
+    <h2>Register</h2>
+
+    <form>
+      <!-- Name -->
+      <label for="name">Name</label><br />
+      <input
+        type="text"
+        id="name"
+        name="name"
+        placeholder="Enter your name"
+        required
+      />
+      <br /><br />
+
+      <!-- Email -->
+      <label for="email">Email</label><br />
+      <input
+        type="email"
+        id="email"
+        name="email"
+        placeholder="Enter your email"
+        required
+      />
+      <br /><br />
+
+      <!-- Password -->
+      <label for="password">Password</label><br />
+      <input
+        type="password"
+        id="password"
+        name="password"
+        placeholder="Enter your password"
+        required
+      />
+      <br /><br />
+
+      <!-- Repeat Password -->
+      <label for="repeat-password">Repeat Password</label><br />
+      <input
+        type="password"
+        id="repeat-password"
+        name="repeat-password"
+        placeholder="Repeat your password"
+        required
+      />
+      <br /><br />
+
+      <!-- Gender -->
+      <label>Gender</label><br />
+
+      <input type="radio" id="male" name="gender" value="male" required />
+      <label for="male">Male</label>
+
+      <input type="radio" id="female" name="gender" value="female" />
+      <label for="female">Female</label>
+
+      <input type="radio" id="other" name="gender" value="other" />
+      <label for="other">Other</label>
+
+      <br /><br />
+
+      <!-- Terms and Conditions -->
+      <input type="checkbox" id="terms" name="terms" required />
+      <label for="terms">I agree to the terms and conditions</label>
+
+      <br /><br />
+
+      <!-- Register Button -->
+      <button type="submit">Register</button>
+    </form>
+  </body>
+</html>

@@ -1,0 +1,16 @@
+#About {
+  background-color: blue;
+}
+
+.main {
+  font-size: 100px;
+  color: yellow;
+}
+
+h2 {
+  color: purple;
+}
+
+/* #about - selector / сонгогч class selector - . | id selector - # */
+/* background-color - property / шинж чанар */
+/* blue - value / утга */
