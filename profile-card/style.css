@@ -1,0 +1,478 @@
+/* ==========================================================================
+   Design Tokens & CSS Variables
+   ========================================================================== */
+:root {
+  --font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  /* Color System */
+  --bg-viewport: #F3F5ED;
+  --card-bg: #FFFFFF;
+  --text-title: #2B333E;
+  --text-handle: #8E99A4;
+  --text-job: #475569;
+  --text-desc: #718096;
+
+  /* Header Gradient Colors */
+  --header-gradient: linear-gradient(148deg, #CC5B77 0%, #A83B57 52%, #782439 100%);
+  --wave-amber: #F2AC66;
+  --wave-teal: #50A99A;
+  --wave-white: #FFFFFF;
+
+  /* Social Links */
+  --social-color: #2D3748;
+  --social-hover: #A83B57;
+  --social-bg-hover: rgba(168, 59, 87, 0.08);
+
+  /* Subscribe Button */
+  --btn-gradient: linear-gradient(135deg, #D45B78 0%, #A23652 100%);
+  --btn-hover-gradient: linear-gradient(135deg, #DE6683 0%, #B33D5B 100%);
+  --btn-shadow: 0 8px 20px -3px rgba(162, 54, 82, 0.36);
+  --btn-hover-shadow: 0 12px 26px -3px rgba(162, 54, 82, 0.48);
+
+  --btn-sub-bg: #F8FAFC;
+  --btn-sub-text: #334155;
+  --btn-sub-border: #E2E8F0;
+
+  /* Card Shadow & Radius */
+  --card-radius: 42px;
+  --card-shadow: 
+    0 4px 6px -1px rgba(90, 45, 60, 0.04),
+    0 24px 48px -12px rgba(85, 40, 55, 0.16),
+    0 0 1px rgba(0, 0, 0, 0.08);
+}
+
+/* ==========================================================================
+   Global Reset & Base Setup
+   ========================================================================== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  min-height: 100%;
+  font-family: var(--font-family);
+  background-color: var(--bg-viewport);
+  color: var(--text-title);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ==========================================================================
+   Interactive Reactive Background & Ambient Parallax Orbs
+   ========================================================================== */
+.interactive-bg {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+#bgCanvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.glow-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.65;
+  z-index: 0;
+  will-change: transform;
+  transition: transform 0.15s cubic-bezier(0.2, 0, 0.2, 1);
+}
+
+.orb-1 {
+  width: 480px;
+  height: 480px;
+  background: radial-gradient(circle, rgba(204, 91, 119, 0.35) 0%, rgba(204, 91, 119, 0) 70%);
+  top: -100px;
+  left: -80px;
+}
+
+.orb-2 {
+  width: 520px;
+  height: 520px;
+  background: radial-gradient(circle, rgba(242, 172, 102, 0.35) 0%, rgba(242, 172, 102, 0) 70%);
+  bottom: -120px;
+  right: -100px;
+}
+
+.orb-3 {
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(80, 169, 154, 0.28) 0%, rgba(80, 169, 154, 0) 70%);
+  top: 40%;
+  left: 65%;
+}
+
+.orb-4 {
+  width: 360px;
+  height: 360px;
+  background: radial-gradient(circle, rgba(168, 59, 87, 0.2) 0%, rgba(168, 59, 87, 0) 70%);
+  bottom: 20%;
+  left: 10%;
+}
+
+/* ==========================================================================
+   Page Layout & Perspective Wrapper
+   ========================================================================== */
+.page-container {
+  position: relative;
+  z-index: 10;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 36px 20px;
+}
+
+.card-perspective-wrapper {
+  perspective: 1200px;
+  width: 100%;
+  max-width: 375px;
+}
+
+/* ==========================================================================
+   Profile Card Structure & 3D Lighting
+   ========================================================================== */
+.profile-card {
+  position: relative;
+  width: 100%;
+  background-color: var(--card-bg);
+  border-radius: var(--card-radius);
+  box-shadow: var(--card-shadow);
+  overflow: hidden;
+  transform-style: preserve-3d;
+  transform: rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1);
+  transition: transform 0.2s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.3s ease;
+  will-change: transform, box-shadow;
+}
+
+/* Card Glare & Specular Reflection */
+.card-glare {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at var(--glare-x, 50%) var(--glare-y, 50%),
+    rgba(255, 255, 255, 0.4) 0%,
+    rgba(255, 255, 255, 0) 65%
+  );
+  pointer-events: none;
+  z-index: 20;
+  opacity: var(--glare-opacity, 0);
+  transition: opacity 0.3s ease;
+}
+
+/* ==========================================================================
+   Card Header with Rose Gradient & Overlapping Waves
+   ========================================================================== */
+.card-header {
+  position: relative;
+  width: 100%;
+  height: 240px;
+  background: var(--header-gradient);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.header-overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 30%, rgba(255, 255, 255, 0.18) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+/* Avatar Frame */
+.avatar-wrapper {
+  position: relative;
+  z-index: 5;
+  margin-top: -12px;
+  transform: translateZ(30px);
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.avatar-ring {
+  width: 124px;
+  height: 124px;
+  border-radius: 50%;
+  background: #A6D7E8;
+  border: 3.5px solid rgba(255, 255, 255, 0.65);
+  box-shadow: 
+    0 12px 28px -4px rgba(60, 15, 25, 0.4),
+    0 0 0 1px rgba(255, 255, 255, 0.2);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 15%;
+  transform: scale(1.18);
+  display: block;
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.avatar-wrapper:hover .avatar-img {
+  transform: scale(1.26);
+}
+
+/* Overlapping Wave Dividers */
+.waves-wrapper {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 85px;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.wave-layer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.wave-amber path {
+  fill: var(--wave-amber);
+  opacity: 0.85;
+}
+
+.wave-teal path {
+  fill: var(--wave-teal);
+  opacity: 0.75;
+}
+
+.wave-white path {
+  fill: var(--wave-white);
+}
+
+/* ==========================================================================
+   Card Body & Typography
+   ========================================================================== */
+.card-body {
+  position: relative;
+  z-index: 4;
+  background-color: var(--card-bg);
+  padding: 12px 32px 36px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transform: translateZ(20px);
+}
+
+.profile-meta {
+  margin-bottom: 20px;
+}
+
+.profile-name {
+  font-size: 1.35rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text-title);
+  line-height: 1.25;
+}
+
+.profile-handle {
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: var(--text-handle);
+  margin-top: 4px;
+}
+
+/* Social Media Navigation */
+.social-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 22px;
+}
+
+.social-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  color: var(--social-color);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  transition: 
+    color 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.social-btn:hover {
+  color: var(--social-hover);
+  background-color: var(--social-bg-hover);
+  transform: translateY(-3px) scale(1.12);
+}
+
+.social-btn:active {
+  transform: translateY(0) scale(0.95);
+}
+
+.social-btn:focus-visible {
+  outline: 2px solid var(--social-hover);
+  outline-offset: 2px;
+}
+
+/* Bio & Job Details */
+.profile-job-info {
+  margin-bottom: 26px;
+}
+
+.profile-job {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-job);
+  letter-spacing: -0.01em;
+  line-height: 1.4;
+}
+
+.profile-description {
+  font-size: 0.8125rem;
+  font-weight: 400;
+  line-height: 1.55;
+  color: var(--text-desc);
+  margin-top: 6px;
+  max-width: 280px;
+}
+
+/* ==========================================================================
+   Subscribe Action Button
+   ========================================================================== */
+.card-action {
+  width: 100%;
+}
+
+.subscribe-btn {
+  width: 100%;
+  height: 48px;
+  border-radius: 9999px;
+  font-family: inherit;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  border: 1px solid transparent;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: var(--btn-gradient);
+  color: #FFFFFF;
+  box-shadow: var(--btn-shadow);
+  transition: 
+    background 0.25s ease,
+    color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.2s ease;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.subscribe-btn:hover {
+  background: var(--btn-hover-gradient);
+  transform: translateY(-2px);
+  box-shadow: var(--btn-hover-shadow);
+}
+
+.subscribe-btn:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.subscribe-btn:focus-visible {
+  outline: 2px solid var(--social-hover);
+  outline-offset: 3px;
+}
+
+.btn-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon-check {
+  display: none;
+}
+
+/* Subscribed State */
+.subscribe-btn.is-subscribed {
+  background: var(--btn-sub-bg);
+  color: var(--btn-sub-text);
+  border-color: var(--btn-sub-border);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+}
+
+.subscribe-btn.is-subscribed:hover {
+  background: #F1F5F9;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+}
+
+.subscribe-btn.is-subscribed .icon-subscribe {
+  display: none;
+}
+
+.subscribe-btn.is-subscribed .icon-check {
+  display: inline-flex;
+  animation: popCheck 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes popCheck {
+  0% {
+    opacity: 0;
+    transform: scale(0.4);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* ==========================================================================
+   Responsive Adaptations
+   ========================================================================== */
+@media (max-width: 400px) {
+  .profile-card {
+    border-radius: 34px;
+  }
+  
+  .card-header {
+    height: 220px;
+  }
+  
+  .avatar-ring {
+    width: 110px;
+    height: 110px;
+  }
+  
+  .card-body {
+    padding: 10px 24px 30px;
+  }
+}
