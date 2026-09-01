@@ -1,0 +1,16 @@
+.box:nth-child(odd) {
+  background-color: #f0d9b5;
+}
+
+.box:nth-child(even) {
+  background-color: #b58863;
+}
+
+/* 2-р мөр */
+.box:nth-child(n + 9):nth-child(-n + 16) {
+  background-color: #b58863;
+}
+
+.box:nth-child(n + 9):nth-child(-n + 16):nth-child(odd) {
+  background-color: #f0d9b5;
+}

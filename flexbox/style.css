@@ -1,0 +1,98 @@
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  flex-direction: column;
+
+  gap: 10px;
+}
+
+.line1 {
+  display: flex;
+  gap: 10px;
+}
+.shar {
+  width: 300px;
+  height: 200px;
+  background-color: rgb(246, 246, 104);
+  border-radius: 10px;
+}
+
+.ulaan {
+  width: 700px;
+  height: 200px;
+  background-color: rgb(252, 82, 82);
+  border-radius: 10px;
+}
+
+.line2 {
+  display: flex;
+  /* flex-direction: column; */
+  gap: 10px;
+}
+.subline2 {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.Sub2 {
+  display: flex;
+  gap: 10px;
+}
+
+.ulaan2 {
+  width: 800px;
+  height: 200px;
+  background-color: rgb(252, 82, 82);
+  border-radius: 10px;
+}
+
+.green {
+  width: 200px;
+  height: 410px;
+  background-color: rgb(103, 186, 103);
+  border-radius: 10px;
+}
+
+.jijigshar {
+  width: 395px;
+  height: 200px;
+  background-color: rgb(246, 246, 104);
+  border-radius: 10px;
+}
+
+.line3 {
+  display: flex;
+  gap: 10px;
+}
+.blue {
+  width: 590px;
+  height: 200px;
+  background-color: rgb(99, 147, 244);
+  border-radius: 10px;
+}
+
+.shar2 {
+  width: 200px;
+  height: 200px;
+  background-color: rgb(246, 182, 104);
+  border-radius: 10px;
+}
+.line4 {
+  display: flex;
+  gap: 10px;
+}
+
+.green2 {
+  width: 800px;
+  height: 200px;
+  background-color: rgb(103, 186, 103);
+  border-radius: 10px;
+}
+.blue2 {
+  width: 200px;
+  height: 200px;
+  background-color: rgb(99, 147, 244);
+  border-radius: 10px;
+}

@@ -1,0 +1,38 @@
+.container {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.head {
+  padding: 40px 60px;
+  background-color: blue;
+  color: white;
+  grid-column-start: 1;
+  grid-column-end: 4;
+}
+
+@media (max-width: 992px) and (min-width: 600px) {
+  .head {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    text-align: center;
+    padding-bottom: 60px;
+    background-color: red;
+  }
+  .container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .container {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  .head {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    background-color: green;
+  }
+}

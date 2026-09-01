@@ -1,0 +1,38 @@
+.container {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(4, 300px);
+  grid-template-rows: repeat(3, 200px);
+}
+
+.first {
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 1;
+  grid-row-end: 4;
+  background-color: orange;
+}
+
+.second {
+  grid-column-start: 2;
+  grid-column-end: 4;
+  grid-row-start: 1;
+  grid-row-end: 2;
+  background-color: orange;
+}
+
+.third {
+  background-color: blue;
+}
+
+.forth {
+  background-color: blueviolet;
+}
+
+.sixth {
+  grid-column-start: 4;
+  grid-column-end: 5;
+  grid-row-start: 2;
+  grid-row-end: 4;
+  background-color: orange;
+}

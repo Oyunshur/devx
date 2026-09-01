@@ -1,0 +1,1095 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="fusion">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aethelgard // Senior Front-End Engineer & Creative Technologist</title>
+  <meta name="description" content="Portfolio of a Senior Front-End Engineer & Creative Technologist specializing in Cybercore, Gothic, and Art Nouveau interactive web design, WebGL, and high-performance UI systems." />
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Cinzel:wght@400;600;800&family=Cormorant+Garamond:ital,wght@0,300;0,500;0,700;1,400&family=Italiana&family=JetBrains+Mono:ital,wght@0,300;0,400;0,700;1,300&family=Syne:wght@400;700;800&family=UnifrakturMaguntia&display=swap" rel="stylesheet" />
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="cyber-gothic-body">
+
+  <!-- Audio Atmosphere & Custom Cursor Elements -->
+  <div id="cursor-glow" class="cursor-glow"></div>
+  <div id="cursor-dot" class="cursor-dot"></div>
+  <canvas id="bg-canvas" class="bg-canvas"></canvas>
+  <div class="crt-scanlines" aria-hidden="true"></div>
+  <div class="vignette-overlay" aria-hidden="true"></div>
+
+  <!-- TRADITIONAL HEADER & NAVIGATION -->
+  <header class="traditional-navbar" id="navbar">
+    <div class="header-inner container">
+      <!-- Brand / Logo -->
+      <a href="#hero" class="navbar-brand" aria-label="Aethelgard Home">
+        <svg class="brand-sigil-icon" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <polygon points="50,4 90,26 90,74 50,96 10,74 10,26" stroke="var(--gold-primary)" stroke-width="1.8" stroke-dasharray="4 2" />
+          <circle cx="50" cy="50" r="32" stroke="var(--neon-cyan)" stroke-width="1.2" />
+          <path d="M50 8 C30 25, 20 45, 50 65 C80 45, 70 25, 50 8 Z" stroke="var(--neon-magenta)" stroke-width="1.5" fill="none"/>
+          <path d="M50 92 C30 75, 20 55, 50 35 C80 55, 70 75, 50 92 Z" stroke="var(--gold-accent)" stroke-width="1.5" fill="none"/>
+          <circle cx="50" cy="50" r="5" fill="var(--neon-cyan)" />
+        </svg>
+        <div class="brand-info">
+          <span class="brand-title">Aethelgard</span>
+          <span class="brand-subtitle">Front-End Engineer</span>
+        </div>
+      </a>
+
+      <!-- Traditional Navigation Menu (All Pages Included + Home Button) -->
+      <nav class="nav-menu" id="nav-menu">
+        <ul class="nav-list">
+          <li class="nav-item">
+            <a href="#hero" class="nav-link active">
+              <i class="fa-solid fa-house nav-icon"></i>
+              <span>Home</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#about" class="nav-link">
+              <i class="fa-solid fa-user nav-icon"></i>
+              <span>About</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#projects" class="nav-link">
+              <i class="fa-solid fa-folder-open nav-icon"></i>
+              <span>Projects</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#skills" class="nav-link">
+              <i class="fa-solid fa-code nav-icon"></i>
+              <span>Skills</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#lab" class="nav-link">
+              <i class="fa-solid fa-flask nav-icon"></i>
+              <span>Lab</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#contact" class="nav-link">
+              <i class="fa-solid fa-envelope nav-icon"></i>
+              <span>Contact</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Right Header Controls (Theme Switcher + Audio + Mobile Toggle) -->
+      <div class="header-controls">
+        <!-- Audio Synthesizer Switch -->
+        <button id="audio-toggle" class="header-btn audio-btn" title="Toggle Ambient Audio Synth (Web Audio API)">
+          <i class="fa-solid fa-volume-xmark" id="audio-icon"></i>
+          <span class="btn-label">Audio</span>
+          <div class="audio-waves" id="audio-waves">
+            <span></span><span></span><span></span><span></span>
+          </div>
+        </button>
+
+        <!-- Aesthetic Theme Switcher -->
+        <div class="theme-switcher">
+          <button id="theme-toggle-btn" class="header-btn theme-btn" aria-haspopup="true" aria-expanded="false" title="Switch Aesthetic Theme">
+            <i class="fa-solid fa-palette"></i>
+            <span class="btn-label">Theme</span>
+            <i class="fa-solid fa-chevron-down caret-icon"></i>
+          </button>
+          <div class="theme-dropdown" id="theme-dropdown">
+            <div class="dropdown-header">Aesthetic Theme</div>
+            <button class="theme-option active" data-style="fusion">
+              <span class="theme-bullet">✦</span> <strong>Cyber-Nouveau</strong> (Default Fusion)
+            </button>
+            <button class="theme-option" data-style="cyber">
+              <span class="theme-bullet">⚡</span> <strong>Cybercore</strong> (High-Tech & Neon)
+            </button>
+            <button class="theme-option" data-style="gothic">
+              <span class="theme-bullet">⚔</span> <strong>Gothic</strong> (Dark Cathedral Obsidian)
+            </button>
+            <button class="theme-option" data-style="nouveau">
+              <span class="theme-bullet">🪷</span> <strong>Art Nouveau</strong> (Gilded Whiplash Flora)
+            </button>
+          </div>
+        </div>
+
+        <!-- Mobile Hamburger Toggle -->
+        <button class="mobile-toggle-btn" id="mobile-toggle" aria-label="Toggle navigation menu">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO SECTION -->
+    <section id="hero" class="hero-section">
+      <!-- Art Nouveau Whiplash Gilded Arch Frame -->
+      <div class="gothic-cathedral-arch-wrapper">
+        <svg class="arch-frame-svg" viewBox="0 0 1200 900" preserveAspectRatio="none" fill="none">
+          <defs>
+            <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#fff4cc" />
+              <stop offset="40%" stop-color="#d4af37" />
+              <stop offset="70%" stop-color="#8a6714" />
+              <stop offset="100%" stop-color="#f3c64c" />
+            </linearGradient>
+            <linearGradient id="cyberNeon" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#00f0ff" />
+              <stop offset="50%" stop-color="#b026ff" />
+              <stop offset="100%" stop-color="#ff0055" />
+            </linearGradient>
+          </defs>
+
+          <!-- Outer Pointed Cathedral Arch with Sinuous Whiplash Vines -->
+          <path class="arch-outline" d="M100,900 L100,450 C100,200 450,50 600,20 C750,50 1100,200 1100,450 L1100,900" stroke="url(#goldGrad)" stroke-width="3" />
+          <path class="arch-inner-line" d="M130,900 L130,460 C130,230 460,90 600,60 C740,90 1070,230 1070,460 L1070,900" stroke="url(#cyberNeon)" stroke-width="1.5" stroke-dasharray="8 4" opacity="0.8" />
+          
+          <!-- Whiplash Botanical Tendrils (Left) -->
+          <path class="whiplash-tendril" d="M100,700 C180,680 220,550 160,450 C120,380 180,300 280,270 C360,250 420,180 480,120 C530,70 580,40 600,20" stroke="url(#goldGrad)" stroke-width="2.5" />
+          <path class="tendril-cyber" d="M115,720 C200,690 235,530 170,430 C130,360 200,280 300,250 C380,230 440,160 500,100" stroke="var(--neon-cyan)" stroke-width="1" opacity="0.7"/>
+          
+          <!-- Whiplash Botanical Tendrils (Right) -->
+          <path class="whiplash-tendril" d="M1100,700 C1020,680 980,550 1040,450 C1080,380 1020,300 920,270 C840,250 780,180 720,120 C670,70 620,40 600,20" stroke="url(#goldGrad)" stroke-width="2.5" />
+          <path class="tendril-cyber" d="M1085,720 C1000,690 965,530 1030,430 C1070,360 1000,280 900,250 C820,230 760,160 700,100" stroke="var(--neon-magenta)" stroke-width="1" opacity="0.7"/>
+
+          <!-- Cathedral Rose Window & Cyber Rosette -->
+          <circle cx="600" cy="180" r="75" stroke="url(#goldGrad)" stroke-width="2" />
+          <circle cx="600" cy="180" r="55" stroke="var(--neon-cyan)" stroke-width="1.2" stroke-dasharray="6 3" />
+          <circle cx="600" cy="180" r="35" stroke="var(--neon-magenta)" stroke-width="1.5" />
+          <polygon points="600,125 615,170 660,180 615,190 600,235 585,190 540,180 585,170" stroke="url(#goldGrad)" stroke-width="1.2" fill="rgba(212,175,55,0.1)"/>
+        </svg>
+
+        <div class="hero-content">
+          <div class="hero-badge glitch-badge" data-text="SENIOR FRONT-END ENGINEER">
+            <span class="badge-gothic">†</span> SENIOR FRONT-END ENGINEER & CREATIVE DEV <span class="badge-nouveau">🪷</span>
+          </div>
+
+          <h1 class="hero-title">
+            <span class="title-gothic">Architecting Extraordinary</span>
+            <span class="title-cyber" data-glitch="USER EXPERIENCES">USER EXPERIENCES</span>
+            <span class="title-nouveau">High-Performance Web & Creative Tech</span>
+          </h1>
+
+          <p class="hero-subtitle">
+            I craft ultra-responsive web applications, bespoke design systems, and immersive WebGL interfaces at the intersection of 
+            <strong>Cybercore performance</strong>, <strong>Gothic structural precision</strong>, and <strong>Art Nouveau organic elegance</strong>.
+          </p>
+
+          <div class="hero-stats-bar">
+            <div class="stat-node">
+              <span class="stat-label">CORE STACK</span>
+              <span class="stat-value"><span class="pulse-dot"></span> HTML5 · Modern CSS · TS/JS</span>
+            </div>
+            <div class="stat-divider">✦</div>
+            <div class="stat-node">
+              <span class="stat-label">CREATIVE TECH</span>
+              <span class="stat-value">WebGL · WebGPU · Web Audio</span>
+            </div>
+            <div class="stat-divider">✦</div>
+            <div class="stat-node">
+              <span class="stat-label">AVAILABILITY</span>
+              <span class="stat-value text-neon-cyan">OPEN FOR COMMISSIONS</span>
+            </div>
+          </div>
+
+          <div class="hero-actions">
+            <a href="#projects" class="btn-sigil primary">
+              <span class="btn-border-gold"></span>
+              <span class="btn-glow-neon"></span>
+              <span class="btn-text"><i class="fa-solid fa-laptop-code"></i> View Projects</span>
+            </a>
+            <a href="#contact" class="btn-sigil secondary">
+              <span class="btn-border-gold"></span>
+              <span class="btn-text"><i class="fa-solid fa-paper-plane"></i> Contact Me</span>
+            </a>
+          </div>
+
+          <div class="scroll-indicator">
+            <span class="scroll-runes">᚛ EXPLORE PORTFOLIO ᚜</span>
+            <div class="scroll-mouse">
+              <div class="wheel"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2: ABOUT / FRONT-END ENGINEERING PHILOSOPHY -->
+    <section id="about" class="section-container">
+      <div class="section-header">
+        <div class="section-tag">[ 02 // ENGINEERING PHILOSOPHY ]</div>
+        <h2 class="section-title">Front-End Design Trinity</h2>
+        <div class="section-ornament">
+          <svg viewBox="0 0 300 24" fill="none">
+            <path d="M0,12 Q75,0 150,12 T300,12" stroke="var(--gold-primary)" stroke-width="1.5"/>
+            <polygon points="150,4 158,12 150,20 142,12" fill="var(--neon-cyan)"/>
+            <circle cx="50" cy="12" r="3" fill="var(--neon-magenta)"/>
+            <circle cx="250" cy="12" r="3" fill="var(--neon-magenta)"/>
+          </svg>
+        </div>
+        <p class="section-desc">
+          How three distinct design pillars inform my technical craftsmanship, UI architecture, and frontend engineering standards.
+        </p>
+      </div>
+
+      <div class="triad-grid">
+        <!-- CARD 1: CYBERCORE PERFORMANCE -->
+        <article class="triad-card cybercore-card" data-tilt>
+          <div class="card-filigree-corner top-left"></div>
+          <div class="card-filigree-corner top-right"></div>
+          <div class="card-filigree-corner bottom-left"></div>
+          <div class="card-filigree-corner bottom-right"></div>
+
+          <div class="card-hud-header">
+            <span class="hud-code">PILLAR_01 // SPEED & TECH</span>
+            <span class="hud-status">60+ FPS</span>
+          </div>
+
+          <div class="card-icon-wrapper">
+            <div class="icon-circle cyber-glow">
+              <i class="fa-solid fa-microchip"></i>
+            </div>
+          </div>
+
+          <h3 class="triad-card-title cyber-font">CYBERCORE</h3>
+          <h4 class="triad-sub">Performance & Reactive Systems</h4>
+
+          <p class="triad-text">
+            Engineered for blazing-fast Core Web Vitals, minimal bundle footprint, zero layout shifts, reactive event-driven state pipelines, and hardware-accelerated shaders.
+          </p>
+
+          <ul class="triad-traits">
+            <li><i class="fa-solid fa-bolt-lightning"></i> Sub-millisecond DOM & Canvas updates</li>
+            <li><i class="fa-solid fa-terminal"></i> Type-safe TypeScript & modern ESNext</li>
+            <li><i class="fa-solid fa-gauge-high"></i> 100/100 Lighthouse performance metrics</li>
+          </ul>
+
+          <div class="card-action">
+            <button class="lens-quick-btn" data-target-style="cyber">Apply Cybercore Theme</button>
+          </div>
+        </article>
+
+        <!-- CARD 2: GOTHIC STRUCTURE -->
+        <article class="triad-card gothic-card" data-tilt>
+          <div class="card-filigree-corner top-left"></div>
+          <div class="card-filigree-corner top-right"></div>
+          <div class="card-filigree-corner bottom-left"></div>
+          <div class="card-filigree-corner bottom-right"></div>
+
+          <div class="card-hud-header">
+            <span class="hud-code">PILLAR_02 // ARCHITECTURE</span>
+            <span class="hud-status">WCAG AAA</span>
+          </div>
+
+          <div class="card-icon-wrapper">
+            <div class="icon-circle gothic-glow">
+              <i class="fa-solid fa-archway"></i>
+            </div>
+          </div>
+
+          <h3 class="triad-card-title gothic-font">GOTHIC</h3>
+          <h4 class="triad-sub">Rigorous Structural Integrity</h4>
+
+          <p class="triad-text">
+            Constructing web architectures as durable as Gothic cathedrals: strict semantic HTML5 hierarchies, bulletproof accessibility (a11y), clean component design, and modular CSS.
+          </p>
+
+          <ul class="triad-traits">
+            <li><i class="fa-solid fa-shield-halved"></i> Semantic HTML & Accessible ARIA patterns</li>
+            <li><i class="fa-solid fa-cubes"></i> Scalable Design System tokenization</li>
+            <li><i class="fa-solid fa-code-branch"></i> Clean, maintainable, modular codebase</li>
+          </ul>
+
+          <div class="card-action">
+            <button class="lens-quick-btn" data-target-style="gothic">Apply Gothic Theme</button>
+          </div>
+        </article>
+
+        <!-- CARD 3: ART NOUVEAU MOTION -->
+        <article class="triad-card nouveau-card" data-tilt>
+          <div class="card-filigree-corner top-left"></div>
+          <div class="card-filigree-corner top-right"></div>
+          <div class="card-filigree-corner bottom-left"></div>
+          <div class="card-filigree-corner bottom-right"></div>
+
+          <div class="card-hud-header">
+            <span class="hud-code">PILLAR_03 // UI/UX MOTION</span>
+            <span class="hud-status">KINETIC</span>
+          </div>
+
+          <div class="card-icon-wrapper">
+            <div class="icon-circle nouveau-glow">
+              <i class="fa-solid fa-spa"></i>
+            </div>
+          </div>
+
+          <h3 class="triad-card-title nouveau-font">ART NOUVEAU</h3>
+          <h4 class="triad-sub">Whiplash Curves & Kinetic Micro-interactions</h4>
+
+          <p class="triad-text">
+            Translating organic botanical aesthetics and Mucha-style fluid curves into responsive CSS layouts, tactile mouse parallax, spring kinematics, and delightful animations.
+          </p>
+
+          <ul class="triad-traits">
+            <li><i class="fa-solid fa-wand-magic-sparkles"></i> Custom cubic-bezier & spring kinematics</li>
+            <li><i class="fa-solid fa-bezier-curve"></i> Responsive SVG morphing & vector art</li>
+            <li><i class="fa-solid fa-palette"></i> Rich typography & bespoke aesthetic styling</li>
+          </ul>
+
+          <div class="card-action">
+            <button class="lens-quick-btn" data-target-style="nouveau">Apply Art Nouveau Theme</button>
+          </div>
+        </article>
+      </div>
+
+      <!-- INTERACTIVE AESTHETIC BLENDER TOOL -->
+      <div class="blender-container">
+        <div class="blender-box">
+          <div class="blender-header">
+            <div class="blender-title">
+              <i class="fa-solid fa-sliders"></i> LIVE FRONT-END CSS ENGINE CALIBRATION
+            </div>
+            <div class="blender-indicator" id="blender-indicator">FUSION STATUS: 100% BALANCED</div>
+          </div>
+          
+          <div class="blender-sliders">
+            <div class="slider-group">
+              <label for="slider-cyber">
+                <span class="slider-label-text"><i class="fa-solid fa-bolt"></i> Cybercore Intensity</span>
+                <span class="slider-val" id="val-cyber">65%</span>
+              </label>
+              <input type="range" id="slider-cyber" min="0" max="100" value="65" class="cyber-slider">
+            </div>
+
+            <div class="slider-group">
+              <label for="slider-gothic">
+                <span class="slider-label-text"><i class="fa-solid fa-dungeon"></i> Gothic Gloom Depth</span>
+                <span class="slider-val" id="val-gothic">75%</span>
+              </label>
+              <input type="range" id="slider-gothic" min="0" max="100" value="75" class="gothic-slider">
+            </div>
+
+            <div class="slider-group">
+              <label for="slider-nouveau">
+                <span class="slider-label-text"><i class="fa-solid fa-leaf"></i> Nouveau Whiplash Bloom</span>
+                <span class="slider-val" id="val-nouveau">80%</span>
+              </label>
+              <input type="range" id="slider-nouveau" min="0" max="100" value="80" class="nouveau-slider">
+            </div>
+          </div>
+
+          <div class="blender-preview-wrapper">
+            <div class="blender-preview-card" id="blender-preview-box">
+              <div class="preview-inner">
+                <div class="preview-glow-ring"></div>
+                <div class="preview-text-block">
+                  <span class="preview-glyph">🪷 † ⚡</span>
+                  <h4>Reactive CSS Custom Properties In Action</h4>
+                  <p id="blender-desc-dynamic">
+                    Real-time CSS variable interpolation powering lighting shaders, whiplash border curvatures, and glowing neon accents.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 3: PROJECTS / PORTFOLIO SHOWCASE -->
+    <section id="projects" class="section-container">
+      <div class="section-header">
+        <div class="section-tag">[ 03 // FEATURED WORKS ]</div>
+        <h2 class="section-title">Front-End Projects & Case Studies</h2>
+        <div class="section-ornament">
+          <svg viewBox="0 0 300 24" fill="none">
+            <path d="M0,12 Q75,24 150,12 T300,12" stroke="var(--gold-primary)" stroke-width="1.5"/>
+            <circle cx="150" cy="12" r="5" fill="var(--neon-magenta)"/>
+            <line x1="120" y1="12" x2="180" y2="12" stroke="var(--neon-cyan)" stroke-width="2"/>
+          </svg>
+        </div>
+        <p class="section-desc">
+          A curated selection of high-performance web applications, 3D WebGL storefronts, design systems, and creative tools.
+        </p>
+      </div>
+
+      <!-- Filter Controls -->
+      <div class="portfolio-filter-hud">
+        <button class="filter-btn active" data-filter="all">✦ ALL PROJECTS</button>
+        <button class="filter-btn" data-filter="webgl">⚡ WEBGL & 3D</button>
+        <button class="filter-btn" data-filter="design-system">⚔ DESIGN SYSTEMS</button>
+        <button class="filter-btn" data-filter="webapp">🪷 WEB APPS</button>
+        <button class="filter-btn" data-filter="creative">⚜ CREATIVE TECH</button>
+      </div>
+
+      <!-- Works Grid -->
+      <div class="relics-grid" id="relics-grid">
+        <!-- ITEM 1 -->
+        <div class="relic-item" data-category="webgl" data-id="1">
+          <div class="relic-card">
+            <div class="relic-visual visual-stela-1">
+              <div class="relic-overlay-hologram"></div>
+              <div class="relic-floating-sigil">
+                <svg viewBox="0 0 100 100" class="mini-sigil">
+                  <circle cx="50" cy="50" r="45" stroke="var(--gold-primary)" stroke-width="1.5" stroke-dasharray="6 3"/>
+                  <path d="M50 5 C20 30, 20 70, 50 95 C80 70, 80 30, 50 5" stroke="var(--neon-cyan)" stroke-width="1.5" fill="none"/>
+                  <circle cx="50" cy="50" r="15" fill="rgba(176,38,255,0.4)"/>
+                </svg>
+              </div>
+              <span class="relic-badge">WEBGL // 01</span>
+            </div>
+            <div class="relic-info">
+              <div class="relic-category-tag"><i class="fa-solid fa-cube"></i> Interactive 3D Storefront</div>
+              <h3 class="relic-title">Chrysalis 3D Configurator</h3>
+              <p class="relic-excerpt">
+                High-end WebGL product customizer featuring real-time physical material shaders, 60 FPS mobile rendering, and zero-dependency vanilla JS engine.
+              </p>
+              <div class="relic-meta">
+                <span class="relic-tech"><i class="fa-solid fa-code"></i> Vanilla JS / WebGL / Three.js / CSS3</span>
+                <button class="relic-view-btn" data-relic-trigger="1">Case Study <i class="fa-solid fa-arrow-right"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ITEM 2 -->
+        <div class="relic-item" data-category="design-system" data-id="2">
+          <div class="relic-card">
+            <div class="relic-visual visual-stela-2">
+              <div class="relic-overlay-hologram"></div>
+              <div class="relic-floating-sigil">
+                <svg viewBox="0 0 100 100" class="mini-sigil">
+                  <polygon points="50,5 95,50 50,95 5,50" stroke="var(--crimson-accent)" stroke-width="2"/>
+                  <circle cx="50" cy="50" r="30" stroke="var(--gold-primary)" stroke-width="1"/>
+                  <line x1="50" y1="5" x2="50" y2="95" stroke="var(--neon-magenta)" stroke-width="1.5"/>
+                </svg>
+              </div>
+              <span class="relic-badge">UI SYSTEM // 02</span>
+            </div>
+            <div class="relic-info">
+              <div class="relic-category-tag"><i class="fa-solid fa-layer-group"></i> Design System & UI Kit</div>
+              <h3 class="relic-title">Cathedral UI Design System</h3>
+              <p class="relic-excerpt">
+                Modular component library with Gothic and Cybercore tokens, WCAG AAA accessibility, custom form controls, and zero-runtime CSS custom properties.
+              </p>
+              <div class="relic-meta">
+                <span class="relic-tech"><i class="fa-solid fa-code"></i> HTML5 / Modern CSS / Web Components / a11y</span>
+                <button class="relic-view-btn" data-relic-trigger="2">Case Study <i class="fa-solid fa-arrow-right"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ITEM 3 -->
+        <div class="relic-item" data-category="creative" data-id="3">
+          <div class="relic-card">
+            <div class="relic-visual visual-stela-3">
+              <div class="relic-overlay-hologram"></div>
+              <div class="relic-floating-sigil">
+                <svg viewBox="0 0 100 100" class="mini-sigil">
+                  <path d="M10,90 Q40,10 90,50 T10,90" stroke="var(--gold-accent)" stroke-width="2" fill="none"/>
+                  <circle cx="50" cy="45" r="22" stroke="var(--neon-cyan)" stroke-width="1" stroke-dasharray="4 2"/>
+                </svg>
+              </div>
+              <span class="relic-badge">CREATIVE // 03</span>
+            </div>
+            <div class="relic-info">
+              <div class="relic-category-tag"><i class="fa-solid fa-bezier-curve"></i> Generative Vector Studio</div>
+              <h3 class="relic-title">L'Orchidée Vector Engine</h3>
+              <p class="relic-excerpt">
+                Browser-based generative tool computing mathematical Art Nouveau whiplash curves, dynamic SVG path morphing, and exportable vector assets.
+              </p>
+              <div class="relic-meta">
+                <span class="relic-tech"><i class="fa-solid fa-code"></i> HTML5 Canvas / SVG Math / Web Audio API</span>
+                <button class="relic-view-btn" data-relic-trigger="3">Case Study <i class="fa-solid fa-arrow-right"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ITEM 4 -->
+        <div class="relic-item" data-category="webapp" data-id="4">
+          <div class="relic-card">
+            <div class="relic-visual visual-stela-4">
+              <div class="relic-overlay-hologram"></div>
+              <div class="relic-floating-sigil">
+                <svg viewBox="0 0 100 100" class="mini-sigil">
+                  <polygon points="50,10 90,30 90,70 50,90 10,70 10,30" stroke="var(--neon-cyan)" stroke-width="2"/>
+                  <polygon points="50,25 75,37 75,63 50,75 25,63 25,37" stroke="var(--neon-magenta)" stroke-width="1.5"/>
+                </svg>
+              </div>
+              <span class="relic-badge">WEB APP // 04</span>
+            </div>
+            <div class="relic-info">
+              <div class="relic-category-tag"><i class="fa-solid fa-terminal"></i> Real-Time Telemetry HUD</div>
+              <h3 class="relic-title">Aetherius Telemetry OS</h3>
+              <p class="relic-excerpt">
+                Cybercore monitoring dashboard rendering live WebSocket streams with custom canvas charts, sub-5ms rendering latency, and responsive widgets.
+              </p>
+              <div class="relic-meta">
+                <span class="relic-tech"><i class="fa-solid fa-code"></i> TypeScript / WebSockets / Canvas API / ESNext</span>
+                <button class="relic-view-btn" data-relic-trigger="4">Case Study <i class="fa-solid fa-arrow-right"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ITEM 5 -->
+        <div class="relic-item" data-category="webgl" data-id="5">
+          <div class="relic-card">
+            <div class="relic-visual visual-stela-5">
+              <div class="relic-overlay-hologram"></div>
+              <div class="relic-floating-sigil">
+                <svg viewBox="0 0 100 100" class="mini-sigil">
+                  <circle cx="50" cy="50" r="40" stroke="var(--gold-primary)" stroke-width="2"/>
+                  <line x1="50" y1="0" x2="50" y2="100" stroke="var(--neon-cyan)" stroke-width="1.5"/>
+                  <path d="M20,50 C30,20 70,20 80,50 C70,80 30,80 20,50" stroke="var(--crimson-accent)" stroke-width="1.5" fill="none"/>
+                </svg>
+              </div>
+              <span class="relic-badge">WEBGPU // 05</span>
+            </div>
+            <div class="relic-info">
+              <div class="relic-category-tag"><i class="fa-solid fa-infinity"></i> 3D Spatial Gallery</div>
+              <h3 class="relic-title">Basilica WebGPU Experience</h3>
+              <p class="relic-excerpt">
+                Hardware-accelerated 3D architectural sanctuary featuring custom WGSL compute shaders, raymarched stained-glass lighting, and spatial audio.
+              </p>
+              <div class="relic-meta">
+                <span class="relic-tech"><i class="fa-solid fa-code"></i> WebGPU / WGSL / GLSL / Spatial Audio</span>
+                <button class="relic-view-btn" data-relic-trigger="5">Case Study <i class="fa-solid fa-arrow-right"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ITEM 6 -->
+        <div class="relic-item" data-category="creative" data-id="6">
+          <div class="relic-card">
+            <div class="relic-visual visual-stela-6">
+              <div class="relic-overlay-hologram"></div>
+              <div class="relic-floating-sigil">
+                <svg viewBox="0 0 100 100" class="mini-sigil">
+                  <circle cx="50" cy="50" r="42" stroke="var(--neon-violet)" stroke-width="1.5" stroke-dasharray="3 3"/>
+                  <polygon points="50,15 80,75 20,75" stroke="var(--gold-primary)" stroke-width="2" fill="none"/>
+                  <polygon points="50,85 80,25 20,25" stroke="var(--neon-cyan)" stroke-width="1.5" fill="none"/>
+                </svg>
+              </div>
+              <span class="relic-badge">AUDIO DSP // 06</span>
+            </div>
+            <div class="relic-info">
+              <div class="relic-category-tag"><i class="fa-solid fa-music"></i> In-Browser Synthesizer</div>
+              <h3 class="relic-title">Sinfonia Web Synthesizer</h3>
+              <p class="relic-excerpt">
+                Zero-asset browser workstation synthesizing gothic modal organ polyphony and cyber FM modulation via raw Web Audio API and Pointer Events.
+              </p>
+              <div class="relic-meta">
+                <span class="relic-tech"><i class="fa-solid fa-code"></i> Web Audio API / Custom DSP / Pointer Events</span>
+                <button class="relic-view-btn" data-relic-trigger="6">Case Study <i class="fa-solid fa-arrow-right"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: SKILLS & TECH STACK GRIMOIRE -->
+    <section id="skills" class="section-container">
+      <div class="section-header">
+        <div class="section-tag">[ 04 // TECHNICAL EXPERTISE ]</div>
+        <h2 class="section-title">Front-End Tech Stack & Skills</h2>
+        <div class="section-ornament">
+          <svg viewBox="0 0 300 24" fill="none">
+            <path d="M0,12 L130,12 L150,2 L170,12 L300,12" stroke="var(--gold-primary)" stroke-width="1.5"/>
+            <circle cx="150" cy="2" r="3" fill="var(--neon-cyan)"/>
+          </svg>
+        </div>
+        <p class="section-desc">
+          Click any skill node below to inspect deep-dive technical mastery, tooling apparatus, and architectural alignment.
+        </p>
+      </div>
+
+      <div class="grimoire-layout">
+        <!-- Left: Interactive Skill Tree Nodes -->
+        <div class="skill-tree-panel">
+          <div class="tree-header">
+            <span class="tree-status"><i class="fa-solid fa-circle-nodes"></i> FRONT-END CAPABILITY GRAPH</span>
+            <span class="tree-nodes-count">9 ACTIVE DOMAINS</span>
+          </div>
+
+          <div class="skill-branches">
+            <!-- Branch 1: Core Front-End -->
+            <div class="branch-group">
+              <div class="branch-title cyber-font"><i class="fa-solid fa-code"></i> 01. Core Front-End Languages</div>
+              <div class="nodes-row">
+                <div class="skill-node active" data-skill="html5">
+                  <div class="node-icon"><i class="fa-brands fa-html5"></i></div>
+                  <div class="node-details">
+                    <span class="node-name">Semantic HTML5 & Accessibility (WCAG)</span>
+                    <div class="node-bar"><div class="node-progress" style="width: 98%"></div></div>
+                  </div>
+                  <span class="node-pct">98%</span>
+                </div>
+
+                <div class="skill-node" data-skill="css3">
+                  <div class="node-icon"><i class="fa-brands fa-css3-alt"></i></div>
+                  <div class="node-details">
+                    <span class="node-name">Advanced CSS3, Grid, Flexbox & Custom Props</span>
+                    <div class="node-bar"><div class="node-progress" style="width: 99%"></div></div>
+                  </div>
+                  <span class="node-pct">99%</span>
+                </div>
+
+                <div class="skill-node" data-skill="typescript">
+                  <div class="node-icon"><i class="fa-brands fa-js"></i></div>
+                  <div class="node-details">
+                    <span class="node-name">TypeScript & Modern JavaScript (ESNext)</span>
+                    <div class="node-bar"><div class="node-progress" style="width: 96%"></div></div>
+                  </div>
+                  <span class="node-pct">96%</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Branch 2: Architecture & Performance -->
+            <div class="branch-group">
+              <div class="branch-title gothic-font"><i class="fa-solid fa-cubes"></i> 02. Architecture & Performance</div>
+              <div class="nodes-row">
+                <div class="skill-node" data-skill="performance">
+                  <div class="node-icon"><i class="fa-solid fa-gauge-high"></i></div>
+                  <div class="node-details">
+                    <span class="node-name">Web Performance & Core Web Vitals</span>
+                    <div class="node-bar"><div class="node-progress" style="width: 95%"></div></div>
+                  </div>
+                  <span class="node-pct">95%</span>
+                </div>
+
+                <div class="skill-node" data-skill="components">
+                  <div class="node-icon"><i class="fa-solid fa-layer-group"></i></div>
+                  <div class="node-details">
+                    <span class="node-name">Design Systems & Component Architecture</span>
+                    <div class="node-bar"><div class="node-progress" style="width: 94%"></div></div>
+                  </div>
+                  <span class="node-pct">94%</span>
+                </div>
+
+                <div class="skill-node" data-skill="responsive">
+                  <div class="node-icon"><i class="fa-solid fa-mobile-screen"></i></div>
+                  <div class="node-details">
+                    <span class="node-name">Responsive Cross-Browser Engineering</span>
+                    <div class="node-bar"><div class="node-progress" style="width: 97%"></div></div>
+                  </div>
+                  <span class="node-pct">97%</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Branch 3: Creative Coding & 3D -->
+            <div class="branch-group">
+              <div class="branch-title nouveau-font"><i class="fa-solid fa-palette"></i> 03. Creative Web & 3D Motion</div>
+              <div class="nodes-row">
+                <div class="skill-node" data-skill="webgl">
+                  <div class="node-icon"><i class="fa-solid fa-cube"></i></div>
+                  <div class="node-details">
+                    <span class="node-name">WebGL, Three.js & GLSL Shaders</span>
+                    <div class="node-bar"><div class="node-progress" style="width: 92%"></div></div>
+                  </div>
+                  <span class="node-pct">92%</span>
+                </div>
+
+                <div class="skill-node" data-skill="svg">
+                  <div class="node-icon"><i class="fa-solid fa-bezier-curve"></i></div>
+                  <div class="node-details">
+                    <span class="node-name">HTML5 Canvas & SVG Path Morphing</span>
+                    <div class="node-bar"><div class="node-progress" style="width: 95%"></div></div>
+                  </div>
+                  <span class="node-pct">95%</span>
+                </div>
+
+                <div class="skill-node" data-skill="webaudio">
+                  <div class="node-icon"><i class="fa-solid fa-wave-square"></i></div>
+                  <div class="node-details">
+                    <span class="node-name">Web Audio API & Sound Design</span>
+                    <div class="node-bar"><div class="node-progress" style="width: 90%"></div></div>
+                  </div>
+                  <span class="node-pct">90%</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Alchemical Skill Insight Screen -->
+        <div class="skill-telemetry-panel">
+          <div class="telemetry-inner" id="telemetry-card">
+            <div class="telemetry-cathedral-header">
+              <div class="header-seal"><i class="fa-brands fa-html5"></i></div>
+              <div class="header-titles">
+                <h4 id="telemetry-title">Semantic HTML5 & Accessibility (WCAG)</h4>
+                <span id="telemetry-class" class="telemetry-sub">[ CORE DOM ARCHITECTURE ]</span>
+              </div>
+            </div>
+
+            <div class="telemetry-body">
+              <p id="telemetry-desc">
+                Engineering accessible, search-optimized, and resilient HTML5 structures with strict landmark roles, ARIA attributes, keyboard focus management, and screen-reader fidelity.
+              </p>
+
+              <div class="telemetry-stats-grid">
+                <div class="telemetry-stat-item">
+                  <span class="label">MASTERY</span>
+                  <span class="val text-gold" id="telemetry-mastery">98% // Senior Level</span>
+                </div>
+                <div class="telemetry-stat-item">
+                  <span class="label">STANDARDS</span>
+                  <span class="val text-neon-cyan" id="telemetry-tech">WCAG 2.2 AAA / WAI-ARIA</span>
+                </div>
+                <div class="telemetry-stat-item">
+                  <span class="label">SPECIALIZATION</span>
+                  <span class="val text-neon-magenta" id="telemetry-alignment">Accessible Component Patterns</span>
+                </div>
+                <div class="telemetry-stat-item">
+                  <span class="label">AUDIT SCORE</span>
+                  <span class="val" id="telemetry-perf">100/100 Accessibility</span>
+                </div>
+              </div>
+
+              <!-- Animated Mini Radar Graphic -->
+              <div class="telemetry-radar-box">
+                <div class="radar-circle">
+                  <div class="radar-sweep"></div>
+                  <div class="radar-point p1"></div>
+                  <div class="radar-point p2"></div>
+                  <div class="radar-point p3"></div>
+                </div>
+                <div class="radar-telemetry-text">
+                  <span>DOM LATENCY: 0.12ms</span>
+                  <span>TREE DEPTH: OPTIMAL (O(1) QUERY)</span>
+                  <span>ACCESSIBILITY: AAA COMPLIANT</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 5: INTERACTIVE LAB & EXPERIMENTS -->
+    <section id="lab" class="section-container">
+      <div class="section-header">
+        <div class="section-tag">[ 05 // INTERACTIVE LAB & EXPERIMENTS ]</div>
+        <h2 class="section-title">The Stained Glass Tarot Terminal</h2>
+        <div class="section-ornament">
+          <svg viewBox="0 0 300 24" fill="none">
+            <path d="M0,12 C75,0 75,24 150,12 C225,0 225,24 300,12" stroke="var(--gold-primary)" stroke-width="1.5"/>
+            <polygon points="150,2 155,12 150,22 145,12" fill="var(--neon-magenta)"/>
+          </svg>
+        </div>
+        <p class="section-desc">
+          An interactive front-end demo showcasing CSS 3D matrix transforms, procedural state dispatch, Web Audio synthesis, and simulated terminal logging.
+        </p>
+      </div>
+
+      <div class="tarot-altar">
+        <div class="tarot-controls">
+          <button id="draw-cards-btn" class="btn-sigil primary">
+            <span class="btn-border-gold"></span>
+            <span class="btn-glow-neon"></span>
+            <span class="btn-text"><i class="fa-solid fa-shuffle"></i> Reshuffle Oracle Deck</span>
+          </button>
+          <span class="tarot-deck-info">STATE DISPATCH: 22 MAJOR CYBER-ARCANA CARDS</span>
+        </div>
+
+        <div class="tarot-cards-container" id="tarot-deck-display">
+          <!-- CARD 1 -->
+          <div class="tarot-card-slot">
+            <div class="tarot-card" data-card-idx="0">
+              <div class="tarot-face tarot-back">
+                <div class="tarot-back-ornament">
+                  <div class="back-sigil">⚜</div>
+                  <div class="back-rune-ring"></div>
+                  <span class="back-label">ARCANA</span>
+                </div>
+              </div>
+              <div class="tarot-face tarot-front">
+                <div class="card-arcana-header">
+                  <span class="arcana-roman">0 // THE PIONEER</span>
+                  <span class="arcana-type">INNOVATION</span>
+                </div>
+                <div class="card-art-frame art-fool">
+                  <div class="art-sigil-icon"><i class="fa-solid fa-code"></i></div>
+                  <div class="art-hologram-glow"></div>
+                </div>
+                <div class="card-arcana-footer">
+                  <h4>The Creative Engineer</h4>
+                  <p>Ship breakthrough web experiences without fear. Trust clean code and bold aesthetics.</p>
+                  <span class="card-keyword">KEYWORD: BOLD ARCHITECTURE</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- CARD 2 -->
+          <div class="tarot-card-slot">
+            <div class="tarot-card flipped" data-card-idx="1">
+              <div class="tarot-face tarot-back">
+                <div class="tarot-back-ornament">
+                  <div class="back-sigil">⚜</div>
+                  <div class="back-rune-ring"></div>
+                  <span class="back-label">ARCANA</span>
+                </div>
+              </div>
+              <div class="tarot-face tarot-front">
+                <div class="card-arcana-header">
+                  <span class="arcana-roman">I // THE ALCHEMIST</span>
+                  <span class="arcana-type">CRAFTSMANSHIP</span>
+                </div>
+                <div class="card-art-frame art-magician">
+                  <div class="art-sigil-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+                  <div class="art-hologram-glow"></div>
+                </div>
+                <div class="card-arcana-footer">
+                  <h4>The UI Alchemist</h4>
+                  <p>Transmute raw HTML & CSS into gilded stained-glass interfaces and responsive art.</p>
+                  <span class="card-keyword">KEYWORD: PIXEL PERFECTION</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- CARD 3 -->
+          <div class="tarot-card-slot">
+            <div class="tarot-card" data-card-idx="2">
+              <div class="tarot-face tarot-back">
+                <div class="tarot-back-ornament">
+                  <div class="back-sigil">⚜</div>
+                  <div class="back-rune-ring"></div>
+                  <span class="back-label">ARCANA</span>
+                </div>
+              </div>
+              <div class="tarot-face tarot-front">
+                <div class="card-arcana-header">
+                  <span class="arcana-roman">XVII // THE STAR</span>
+                  <span class="arcana-type">PERFORMANCE</span>
+                </div>
+                <div class="card-art-frame art-star">
+                  <div class="art-sigil-icon"><i class="fa-solid fa-gauge-high"></i></div>
+                  <div class="art-hologram-glow"></div>
+                </div>
+                <div class="card-arcana-footer">
+                  <h4>The 100 Lighthouse</h4>
+                  <p>Whiplash curves render at 60 FPS. Lightning speed and zero layout shifts illuminate the user journey.</p>
+                  <span class="card-keyword">KEYWORD: ULTRA SPEED</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="oracle-terminal-output" id="oracle-output">
+          <div class="terminal-bar">
+            <span class="term-dot red"></span>
+            <span class="term-dot yellow"></span>
+            <span class="term-dot green"></span>
+            <span class="term-title">FRONTEND_REACTIVE_CONSOLE.LOG</span>
+          </div>
+          <div class="terminal-log" id="oracle-log">
+            <p class="term-line"><span class="prompt-arrow">❯</span> CLIENT READY: Click any card to trigger 3D matrix flip & synthesized audio.</p>
+            <p class="term-line prompt-live"><span class="prompt-arrow">❯</span> AWAITING INPUT // 60 FPS REFRESH RATE ACTIVE...</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 6: CONTACT & HIRE ME -->
+    <section id="contact" class="section-container">
+      <div class="section-header">
+        <div class="section-tag">[ 06 // GET IN TOUCH ]</div>
+        <h2 class="section-title">Communion with the Engineer</h2>
+        <div class="section-ornament">
+          <svg viewBox="0 0 300 24" fill="none">
+            <path d="M0,12 L140,12 M160,12 L300,12" stroke="var(--gold-primary)" stroke-width="1.5"/>
+            <polygon points="150,4 158,12 150,20 142,12" stroke="var(--neon-cyan)" fill="none"/>
+          </svg>
+        </div>
+        <p class="section-desc">
+          Looking to collaborate, hire for a senior front-end role, or build an extraordinary web experience? Send a message below.
+        </p>
+      </div>
+
+      <div class="communion-sanctum">
+        <div class="communion-grid">
+          <!-- Left: Contact Details -->
+          <div class="altar-info-panel">
+            <div class="altar-seal-box">
+              <div class="altar-cross-icon">⚜</div>
+              <h3 class="gothic-font">Front-End Scriptorium</h3>
+              <p class="scriptorium-text">
+                Currently open for full-time senior engineering opportunities, high-impact creative freelance contracts, and bespoke WebGL design systems.
+              </p>
+            </div>
+
+            <div class="communion-links">
+              <div class="comm-channel">
+                <div class="comm-icon"><i class="fa-solid fa-envelope"></i></div>
+                <div class="comm-meta">
+                  <span class="comm-label">DIRECT EMAIL SIGNAL</span>
+                  <a href="mailto:aethelgard.dev@portfolio.tech" class="comm-value">aethelgard.dev@portfolio.tech</a>
+                </div>
+              </div>
+
+              <div class="comm-channel">
+                <div class="comm-icon"><i class="fa-brands fa-github"></i></div>
+                <div class="comm-meta">
+                  <span class="comm-label">OPEN SOURCE REPOSITORIES</span>
+                  <a href="https://github.com" target="_blank" rel="noopener" class="comm-value">github.com/aethelgard-dev</a>
+                </div>
+              </div>
+
+              <div class="comm-channel">
+                <div class="comm-icon"><i class="fa-brands fa-linkedin-in"></i></div>
+                <div class="comm-meta">
+                  <span class="comm-label">PROFESSIONAL NETWORK</span>
+                  <a href="https://linkedin.com" target="_blank" rel="noopener" class="comm-value">linkedin.com/in/aethelgard-engineer</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="sanctum-coordinates">
+              <div class="coord-item">
+                <span class="c-key">LOC:</span>
+                <span class="c-val">Available Globally // Remote</span>
+              </div>
+              <div class="coord-item">
+                <span class="c-key">ROLE:</span>
+                <span class="c-val">Senior Front-End / Creative Dev</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Interactive Contact Form -->
+          <div class="altar-form-panel">
+            <form id="transmission-form" class="gothic-cyber-form" novalidate>
+              <div class="form-corner-filigree top-left"></div>
+              <div class="form-corner-filigree top-right"></div>
+              <div class="form-corner-filigree bottom-left"></div>
+              <div class="form-corner-filigree bottom-right"></div>
+
+              <div class="form-header">
+                <span class="form-indicator"></span>
+                <span>DISPATCH MESSAGE OR INQUIRY</span>
+              </div>
+
+              <div class="form-group">
+                <label for="caller-name">
+                  <span class="label-gothic">NAME / COMPANY</span>
+                  <span class="req">*</span>
+                </label>
+                <div class="input-cyber-wrapper">
+                  <i class="fa-solid fa-user input-icon"></i>
+                  <input type="text" id="caller-name" name="name" placeholder="e.g. Vivienne Vance / CyberTech Inc." required />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="caller-email">
+                  <span class="label-gothic">EMAIL ADDRESS</span>
+                  <span class="req">*</span>
+                </label>
+                <div class="input-cyber-wrapper">
+                  <i class="fa-solid fa-envelope input-icon"></i>
+                  <input type="email" id="caller-email" name="email" placeholder="e.g. vivienne@company.com" required />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="project-discipline">
+                  <span class="label-gothic">PROJECT TYPE / INQUIRY</span>
+                </label>
+                <div class="input-cyber-wrapper">
+                  <i class="fa-solid fa-compass-drafting input-icon"></i>
+                  <select id="project-discipline" name="discipline">
+                    <option value="frontend">Senior Front-End Engineering Role</option>
+                    <option value="webgl">Custom 3D WebGL / Interactive Experience</option>
+                    <option value="design-system">Design System & UI Component Library</option>
+                    <option value="consulting">Performance Optimization & Audit</option>
+                    <option value="freelance">Freelance Web Development</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="project-message">
+                  <span class="label-gothic">MESSAGE</span>
+                  <span class="req">*</span>
+                </label>
+                <div class="input-cyber-wrapper">
+                  <textarea id="project-message" name="message" rows="4" placeholder="Tell me about your project or opportunity..." required></textarea>
+                </div>
+              </div>
+
+              <div class="form-actions">
+                <button type="submit" class="btn-sigil primary form-submit-btn">
+                  <span class="btn-border-gold"></span>
+                  <span class="btn-glow-neon"></span>
+                  <span class="btn-text"><i class="fa-solid fa-paper-plane"></i> Send Message</span>
+                </button>
+              </div>
+
+              <div id="form-feedback" class="form-feedback-box" style="display: none;"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="cyber-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <span class="brand-gothic">Aethelgard</span>
+        <span class="footer-copy">© 2026 Aethelgard // Senior Front-End Engineer & Creative Technologist</span>
+      </div>
+
+      <div class="footer-trinity-badges">
+        <span class="f-badge"><i class="fa-solid fa-bolt"></i> Cybercore</span>
+        <span class="f-badge"><i class="fa-solid fa-cross"></i> Gothic</span>
+        <span class="f-badge"><i class="fa-solid fa-leaf"></i> Art Nouveau</span>
+      </div>
+
+      <div class="footer-back-top">
+        <a href="#hero" class="back-to-top-btn" aria-label="Return to top">
+          <i class="fa-solid fa-chevron-up"></i>
+          <span>TOP</span>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- MODAL FOR PROJECT DEEP DIVE -->
+  <div id="relic-modal" class="relic-modal-backdrop" aria-hidden="true" role="dialog">
+    <div class="modal-dialog">
+      <button class="modal-close-btn" id="modal-close" aria-label="Close project modal">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <div class="modal-filigree-border">
+        <div class="modal-content-inner" id="modal-dynamic-content">
+          <!-- Populated via JavaScript -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCRIPT -->
+  <script src="app.js"></script>
+</body>
+</html>
