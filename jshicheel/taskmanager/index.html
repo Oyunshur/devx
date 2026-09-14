@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BRUTAL TASKS</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Scrolling ticker banner -->
+  <div class="marquee">
+    <div class="marquee-track">
+      <span>⚡ BRUTAL TASKS</span>
+      <span class="star">✦</span>
+      <span>GET STUFF DONE</span>
+      <span class="star">✦</span>
+      <span>NO EXCUSES</span>
+      <span class="star">✦</span>
+      <span>⚡ BRUTAL TASKS</span>
+      <span class="star">✦</span>
+      <span>GET STUFF DONE</span>
+      <span class="star">✦</span>
+      <span>NO EXCUSES</span>
+      <span class="star">✦</span>
+    </div>
+  </div>
+
+  <div class="container">
+    <!-- Header -->
+    <header class="header">
+      <div>
+        <h1 class="logo">⚡ BRUTAL<span class="dot">.</span>TASKS</h1>
+        <p class="tagline">Simple. Brutal. Productive.</p>
+      </div>
+      <div class="header-right">
+        <div class="clock" id="clock">00:00:00</div>
+        <button class="btn btn-theme" id="btn-theme" title="Toggle theme">🌙</button>
+      </div>
+    </header>
+
+    <!-- Stats bar -->
+    <section class="stats">
+      <div class="stat-card card-yellow">
+        <span class="stat-label">TOTAL</span>
+        <span class="stat-value" id="stat-total">0</span>
+      </div>
+      <div class="stat-card card-cyan">
+        <span class="stat-label">ACTIVE</span>
+        <span class="stat-value" id="stat-active">0</span>
+      </div>
+      <div class="stat-card card-lime">
+        <span class="stat-label">DONE</span>
+        <span class="stat-value" id="stat-done">0</span>
+      </div>
+      <div class="stat-card card-pink">
+        <span class="stat-label">PROGRESS</span>
+        <span class="stat-value" id="stat-percent">0%</span>
+      </div>
+    </section>
+
+    <!-- Add task form -->
+    <section class="add-section">
+      <input
+        type="text"
+        id="task-input"
+        class="task-input"
+        placeholder="What needs to be crushed today?"
+        maxlength="100"
+      >
+      <select id="priority-select" class="priority-select">
+        <option value="low">🌱 LOW</option>
+        <option value="medium" selected>⚡ MED</option>
+        <option value="high">🔥 HIGH</option>
+      </select>
+      <button id="btn-add" class="btn btn-add">＋ ADD TASK</button>
+    </section>
+
+    <!-- Filter pills -->
+    <section class="filters">
+      <button class="pill active" data-filter="all">ALL</button>
+      <button class="pill" data-filter="active">ACTIVE</button>
+      <button class="pill" data-filter="done">DONE</button>
+      <span class="separator">|</span>
+      <button class="btn btn-clear" id="btn-clear">🗑️ CLEAR DONE</button>
+    </section>
+
+    <!-- Task list -->
+    <section class="task-list" id="task-list">
+      <!-- Tasks rendered here by JS -->
+    </section>
+
+    <!-- Empty state -->
+    <div class="empty-state" id="empty-state" style="display:none;">
+      <span class="empty-icon">🎯</span>
+      <h3>NO TASKS YET!</h3>
+      <p>Add your first task above and start crushing it.</p>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <span>⚡ BUILT WITH VANILLA JS & NEO-BRUTALISM</span>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
