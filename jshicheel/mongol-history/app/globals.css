@@ -1,0 +1,65 @@
+@import "tailwindcss";
+
+:root {
+  --ink: #141816;
+  --ink-soft: #1d2420;
+  --paper: #e8dfcf;
+  --paper-soft: #f2eadc;
+  --sand: #c7aa78;
+  --gold: #e0b45b;
+  --red: #9e3f2d;
+  --blue: #6b8f91;
+  --line: rgba(232, 223, 207, 0.18);
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--ink);
+  color: var(--paper);
+  font-family: Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
+}
+a { color: inherit; }
+button, a { -webkit-tap-highlight-color: transparent; }
+::selection { background: var(--gold); color: var(--ink); }
+
+.site-shell {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 82% 9%, rgba(107, 143, 145, 0.14), transparent 24rem),
+    radial-gradient(circle at 10% 32%, rgba(158, 63, 45, 0.1), transparent 22rem),
+    var(--ink);
+}
+.display-serif { font-family: Georgia, "Times New Roman", serif; letter-spacing: -0.045em; }
+.eyebrow { color: var(--gold); font-size: .68rem; font-weight: 700; letter-spacing: .2em; line-height: 1.4; text-transform: uppercase; }
+.section-rule { border-top: 1px solid var(--line); }
+.grain {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.13'/%3E%3C/svg%3E");
+  mix-blend-mode: soft-light; opacity: .25; pointer-events: none;
+}
+.hero-image { background-color: #7b6850; background-position: center; background-size: cover; }
+.hero-image::after {
+  background: linear-gradient(90deg, rgba(20,24,22,.96) 0%, rgba(20,24,22,.67) 39%, rgba(20,24,22,.2) 72%, rgba(20,24,22,.45) 100%);
+  content: ""; inset: 0; position: absolute;
+}
+.pattern-lines { background-image: linear-gradient(135deg, transparent 49%, rgba(224,180,91,.09) 50%, transparent 51%); background-size: 20px 20px; }
+.floating-card { box-shadow: 0 22px 70px rgba(0,0,0,.25); }
+.scene-frame canvas { display: block; height: 100% !important; width: 100% !important; }
+.will-animate { will-change: transform, opacity; }
+
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: #111713; }
+::-webkit-scrollbar-thumb { background: #9b6735; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #c08749; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: .01ms !important;
+  }
+}
